@@ -120,6 +120,7 @@ Feature Bangla Explanation:
 
 Summary Table (Feature ↔ React Topic)
 Feature	React Topics Applied	Bangla Explanation
+function SignUp():functional Component.
 Signup/Login	useState, Event Handling, Conditional Rendering, React Router	Form input capture, error display, page navigation
 Dashboard	JSX, React Router	Welcome message + navigation links
 Medicine Schedule	useState, Event Handling, Conditional Rendering, Props	Add, mark as taken, table display
