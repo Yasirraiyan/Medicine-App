@@ -226,6 +226,7 @@ function Schedule() {
     }
     //when added error disappear
     setError("");
+    setSuccess("Medicine Added Successfully."); //If added successfully show successmessage
     setMedicines([...medicines, { name, dose }]);
     const updatedInputs = [...inputs];
     updatedInputs.splice(index, 1);
@@ -235,6 +236,29 @@ function Schedule() {
     <div style={{ textAlign: "center", marginTop: "30px" }}>
       <h2>Medicine List</h2>
       <button onClick={handleAddInputBox}>Add Medicine</button>
+  //Inline CSS For error and success message show 
+  //error message red error 
+  <p
+        style={{
+          color: "red",
+          fontSize: "25px",
+          fontWeight: "Bold",
+          fontStyle: "cursive",
+        }}
+      >
+         ! {error} error message red exclamation
+      </p>
+        //successmessage green color successmessage
+      <p
+        style={{
+          color: "green",
+          fontSize: "30px",
+          fontWeight: "Bold",
+          fontStyle: "cursive",
+        }}
+      >
+      ✅  {success} //successmessage green tick
+      </p>
       <div>
         {inputs.map((input, index) => (
           <div key={index}>
