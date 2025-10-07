@@ -1,3 +1,5 @@
+//This code is it has 3 box initially add button with every box which is not flexible.Flexible means it has 1 button add eeach click 1 new bix generate with add buuton if add button click the box is hided.Dynamically adding it means.
+
 import React, { useState } from "react";
 import NextMedicine from "./NextMedicine";
 function Schedule() {
@@ -193,4 +195,79 @@ function Schedule() {
   );
 }
 
+export default Schedule;
+
+
+//For Dynamical add means this feature which is flexible it means Flexible means it has 1 button add each click 1 new bix generate with add buuton if add button click the box is hided.Dynamically adding it means.
+Code is below:
+----------------
+
+  import React, { useState } from "react";
+import NextMedicine from "./NextMedicine";
+function Schedule() {
+  const [inputs, setInputs] = useState([]);
+  const [medicines, setMedicines] = useState([]);
+
+  const handleAddInputBox = () => {
+    setInputs([...inputs, { name: "", dose: "" }]);
+  };
+  const handleInputChange = (index, field, value) => {
+    const updated = [...inputs];
+    updated[index][field] = value;
+    setInputs(updated);
+  };
+  const handleAddMedicine = (index) => {
+    const { name, dose } = inputs[index];
+    if (name.trim() === "" || dose.trim() === "") return;
+    setMedicines([...medicines, { name, dose }]);
+    const updatedInputs = [...inputs];
+    updatedInputs.splice(index, 1);
+    setInputs(updatedInputs);
+  };
+  return (
+    <div style={{ textAlign: "center", marginTop: "30px" }}>
+      <h2>Medicine List</h2>
+      <button onClick={handleAddInputBox}>Add Medicine</button>
+      <div>
+        {inputs.map((input, index) => (
+          <div key={index}>
+            <input
+              type="text"
+              placeholder="Enter Medicine Name"
+              value={input.name}
+              onChange={(e) => handleInputChange(index, "name", e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Dose"
+              value={input.dose}
+              onChange={(e) => handleInputChange(index, "dose", e.target.value)}
+            />
+            <button onClick={() => handleAddMedicine(index)}>Add</button>
+          </div>
+        ))}
+      </div>
+      {medicines.length > 0 && (
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Medicine Name</th>
+              <th>Dose</th>
+            </tr>
+          </thead>
+          <tbody>
+            {medicines.map((med, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{med.name}</td>
+                <td>{med.dose}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
 export default Schedule;
