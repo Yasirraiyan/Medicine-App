@@ -218,7 +218,14 @@ function Schedule() {
   };
   const handleAddMedicine = (index) => {
     const { name, dose } = inputs[index];
-    if (name.trim() === "" || dose.trim() === "") return;
+    //if input box empty error show red 
+     if (name.trim() === "" || dose.trim() === "") {
+      setError("Please fill up both name and dose!");
+      alert("Please fill up both name and dose!");
+      return; //because error show 
+    }
+    //when added error disappear
+    setError("");
     setMedicines([...medicines, { name, dose }]);
     const updatedInputs = [...inputs];
     updatedInputs.splice(index, 1);
